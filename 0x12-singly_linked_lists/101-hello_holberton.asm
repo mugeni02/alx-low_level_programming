@@ -1,15 +1,25 @@
-section .data
-    hello_message db "Hello, Holberton", 0
-    format db "%s", 0
+
+; Desc: 64-bit assembly program that prints
+;       Hello, Holberton followed by a new line.
+
+extern printf
 
 section .text
-    global main
-    extern printf
+   global main
 
 main:
-    push rdi             ; Preserve the value of rdi
-    mov rdi, format      ; Format specifier
-    mov rsi, hello_message ; Message to be printed
-    call printf          ; Call printf
-    pop rdi              ; Restore the value of rdi
-    ret
+   push rbp
+
+   mov rdi,fmt
+   mov rsi,msg
+   mov rax,0
+   call printf
+
+   pop rbp
+
+   mov rax,0
+   ret
+
+section .data
+   msg: db "Hello, Holberton", 0
+   fmt: db "%s", 10, 0
